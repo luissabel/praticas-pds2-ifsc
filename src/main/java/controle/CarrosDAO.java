@@ -37,7 +37,7 @@ public class CarrosDAO {
 		}catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
+		c.fecharConexao();
 		return carros;
 		
 	}
