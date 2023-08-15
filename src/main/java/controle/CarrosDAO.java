@@ -2,6 +2,7 @@ package controle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,7 +17,26 @@ public class CarrosDAO {
 		
 		ArrayList<Carros> carros = new ArrayList();
 		
-		String query = "SELECT + FROM pessoa";
+		String query = "SELECT * FROM carros";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			 ResultSet rs = ps.executeQuery();
+			 while(rs.next()) {
+				 int idCarro = rs.getInt("id_pessoa");
+				 String modelo =rs.getString("modelo");
+				 
+				 Carros p = new Carros();
+				 p.setIdCarro(idCarro);
+				 p.setModelo(modelo);
+				 
+				 carros.add(p);
+				 
+			 }
+			
+		}catch (SQLException e) {
+				e.printStackTrace();
+			}
 		
 		return carros;
 		
