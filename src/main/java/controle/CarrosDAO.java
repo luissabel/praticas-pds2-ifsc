@@ -69,5 +69,41 @@ public class CarrosDAO {
 		
 		return true;
 	}
-
+	public boolean excluir(Carros p) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "DELETE FROM carro WHERE id_pessoa = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, p.getIdCarro());
+			ps.executeUpdate();
+			c.fecharConexao();
+			return false;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	public boolean atualizar(Carros p) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "UPDATE carro SET modelo_carro" + "nome_carro = ?, + WHERE id_carro";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, p.getModelo());
+			ps.setInt(2, p.getIdCarro());
+			
+			ps.executeUpdate();
+			c.fecharConexao();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+}
 }
