@@ -78,12 +78,13 @@ public class CarrosDAO {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, p.getIdCarro());
 			ps.executeUpdate();
-			c.fecharConexao();
 			return false;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 		
 		return false;
@@ -99,10 +100,12 @@ public class CarrosDAO {
 			ps.setInt(2, p.getIdCarro());
 			
 			ps.executeUpdate();
-			c.fecharConexao();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
 		}
 		return false;
 }
